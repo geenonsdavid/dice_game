@@ -15,10 +15,29 @@ function random() {
 }
 
 /** init variable */
+const displayCurrentScore1 = document.getElementById("currentScore1");
+const displayCurrentScore2 = document.getElementById("currentScore2");
+const displayTotalScore1 = document.getElementById("totalScore1");
+const displayTotalScore2 = document.getElementById("totalScore2");
+const displayPlayer1 = document.getElementsByClassName('playerName')[0];
+const displayPlayer2 = document.getElementsByClassName('playerName')[1];
+const displayDice = document.getElementById('dice');
+const selectPLayer = document.getElementById("selectPlayer");
+const btnRoll = document.getElementById('btn_roll');
+const btn_hold = document.getElementById('btn_hold');
+const btn_newGame = document.getElementById('btn_newGame')
+
+/** listen btn_roll */
+btnRoll.addEventListener('click',roll);
+/** listen button hold */
+btn_hold.addEventListener('click',nextPlayer);
+/** listen btn_newGame */
+btn_newGame.addEventListener('click',newGame);
+
 var newGame = true;
 if (newGame){
     var newGame = false; 
-    document.getElementsByClassName('playerName')[1].setAttribute("style","color: #BBBBBB;font-weight: 200;");
+    displayPlayer1.setAttribute("style","color: #BBBBBB;font-weight: 200;");
 };
 
 /** function to show score */
@@ -29,67 +48,87 @@ function showScore(score,player,total){
     document.getElementById('totalScorePlayer' + player).textContent =score;
 }
 }
+
 /** fonction pour roll dice */
 function roll(){
     var result_roll = random();
-    /** récupére display dice*/
-    const dice = document.getElementById('dice');
 
     /** modify background with result roll */
-    dice.setAttribute("style", "background-image: url(./image/" + result_roll + ".svg)");
+    displayDice.setAttribute("style", "background-image: url(./image/" + result_roll + ".svg)");
 
-    /** show currentScore */
-    if (player1.select){
+    /** display currentScore */
+    if(player1.select){
         player1.currentScore = player1.currentScore + result_roll;
-        
-         showScore(player1.currentScore,1,false);
-    }
-    else {
+        displayCurrentScore1.textContent = player1.currentScore;
+    }else{
         player2.currentScore = player2.currentScore + result_roll;
-        showScore(player2.currentScore,2,false);
+        displayCurrentScore2.textContent = player2.currentScore;
     }
-}
 
-/** fonction to change player*/
+} 
+
+/** fonction to change player */
 function nextPlayer(){
     if (player1.select){
         /** increase total score player 1 */
         player1.totalScore = player1.totalScore + player1.currentScore;
+        if (player1.totalScore > 100){
+            player1.totalScore = player1.totalScore - player1.currentScore;
+        }
         /** init current score player 1 at 0 */
         player1.currentScore = 0;
-        showScore(0,1,false);
+        displayCurrentScore1.textContent = 0;
+        /** showScore(score name, 1 or 2, ) */
         showScore(player1.totalScore,1,true);
+        /** winner is */
+        winnerIs();
         /** change player */
-        player1.select = false;
-        player2.select = true;
-        /** change select player */
-        document.getElementById('selectPlayer').setAttribute("style","justify-content: end;");
-        /** change color name player 2 */
-        document.getElementsByClassName('playerName')[0].setAttribute("style","color: #BBBBBB;font-weight: 200;");
-        document.getElementsByClassName('playerName')[1].setAttribute("style","color: #000000;");
+        changePlayer();
     }else {
-        /** increase total score player 2 */
+        /** increase total score player 1 */
         player2.totalScore = player2.totalScore + player2.currentScore;
+        if (player2.totalScore > 100){
+            player2.totalScore = player2.totalScore - player2.currentScore;
+        }
         /** init current score player 2 at 0 */
         player2.currentScore = 0;
-        showScore(0,2,false);
+        displayCurrentScore2.textContent = 0;
         showScore(player2.totalScore,2,true);
+         /** winner is */
+         winnerIs();
         /** change player */
-        player1.select = true;
-        player2.select = false;
-        /** change select player */
-        document.getElementById('selectPlayer').setAttribute("style","justify-content: left;");
-        /** change color name player 1 */
-        document.getElementsByClassName('playerName')[1].setAttribute("style","color: #BBBBBB; font-weight: 200");
-        document.getElementsByClassName('playerName')[0].setAttribute("style","color: #000000;");
+        changePlayer();
     }
 }
 
-/** générer un nombre alétoire en cliquant sur btn_roll */
-const btnRoll = document.getElementById('btn_roll');
-btnRoll.addEventListener('click',roll);
+function changePlayer(){
+        player1.select = !player1.select;
+        player2.select = !player2.select;
+        /** change select player */
+        if (player1.select){
+            displayPlayer1.setAttribute("style","color: #BBBBBB;font-weight: 200;");
+            displayPlayer2.setAttribute("style","color: #000000;");
+        }else{
+            selectPLayer.setAttribute("style","justify-content: end;");
+        }      
+}
 
+function displayCurrentScore(player){
+    /** add currentScore player and roll dice result */
+    player.currentScore = player.currentScore + result_roll;
+    /** display currentScore player 1 */
+    showScore(player.currentScore,1,false);
+}
 
-/** button hold */
-const btn_hold = document.getElementById('btn_hold');
-btn_hold.addEventListener('click',nextPlayer);
+function newGame(){
+    alert('new game');
+}
+
+function winnerIs(){
+    if (player1.totalScore == 100){
+        alert("winner is " + player1.name);
+     }else if (player2.totalScore == 100){
+        alert("winner is " + player2.name)
+     } 
+}
+
