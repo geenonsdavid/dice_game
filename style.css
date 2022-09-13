@@ -1,0 +1,161 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-decoration: none;
+}
+
+:root{
+    --background-body: #815619;
+    --background-theme: #FF5555;
+    --background-player1: #F7F7F7;
+    --background-player2: #FFFFFF;
+    --text-color-theme: #000000;
+    --text-color-player-select:#BBBBBB;
+    --text-color-current-score:#FFFFFF;
+}
+
+body{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Lato', sans-serif;
+    font-style: normal;
+    font-weight: 300;
+    background-color: var(--background-body);
+}
+
+#displayPlayer1,
+#displayPlayer2{
+    display: flex;
+    flex-direction: column;
+    width: 641px;
+    height: 772px;
+    background: var(--background-player1);
+    align-items: center;
+    
+}
+
+#displayPlayer2{
+    background: var(--background-player2);
+}
+
+.playerName{
+    text-align: center;
+    width: 255px;
+    height: 72px;
+    font-size: 56px;
+    line-height: 67px;
+    color: var(--text-color-theme);
+    margin-top: 150px;
+}
+
+
+
+#totalScorePlayer1 ,
+#totalScorePlayer2{
+    display: flex;
+    flex-direction: column;
+    margin-top: 50.98px;
+    font-weight: 275px;
+    font-size: 105px;
+    line-height: 125px;
+    color: var(--background-theme);
+}
+
+#displayPlayer2 .playerName{
+    color: var(--text-color-player-select);
+    font-weight: 200;
+}
+
+.currentScore{
+    margin-top: 144px;
+    width: 155px;
+    padding: 14px 0px;
+    background: var(--background-theme);
+    text-align: center;
+}
+
+.currentScore p{
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    color: var(--text-color-theme);
+    
+}
+
+#currentScore1,
+#currentScore2{
+    font-weight: 300;
+    font-size: 39px;
+    line-height: 47px;
+    color: var(--text-color-current-score);
+    margin-top: 13px;
+}
+
+#btn_newGame{
+    position: absolute;
+    top: 56px;
+}
+
+#selectPlayer{
+    position: absolute;
+    width: 340px;
+    top: 175px;
+    background-color:transparent;
+    display: flex;
+    justify-content: end;
+}
+
+.puce{
+    background-color: var(--background-theme);
+    height: 20px;
+    width: 20px;
+    border-radius: 10px;
+}
+#dice{
+    position: absolute;
+    width: 130px;
+    height: 130px;
+    background-color: #FFFFFF;
+    /*background-image: url(./image/1.svg);*/
+    background-size: cover;
+    top: 230px;
+    box-shadow: 0px 0px 32.0599px rgba(0, 0, 0, 0.1);
+}
+
+#btn_roll{
+    position: absolute;
+    top: 517px;
+}
+#btn_hold{
+    position: absolute;
+    bottom: 139px;
+}
+
+.icon{
+    width: 40px;
+    height: 40px;
+    color: var(--background-theme);
+}
+
+button{
+    opacity: 0.4;
+    background-color: transparent;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 19px;
+}
+
+button p{
+    font-family: 'lato';
+    font-style: normal;
+    font-weight:400;
+    font-size: 28px;
+    line-height: 30px;
+}
