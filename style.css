@@ -66,11 +66,6 @@ body{
     color: var(--background-theme);
 }
 
-#displayPlayer2 .playerName{
-    color: var(--text-color-player-select);
-    font-weight: 200;
-}
-
 .currentScore{
     margin-top: 144px;
     width: 155px;
@@ -107,7 +102,7 @@ body{
     top: 175px;
     background-color:transparent;
     display: flex;
-    justify-content: end;
+    justify-content: start;
 }
 
 .puce{
