@@ -1,3 +1,13 @@
+function Player(name, currentScore,totalScore,select){
+    this.name = name;
+    this.currentScore = currentScore;
+    this.totalScore = totalScore;
+    this.select = select;
+}
+/** instance two players */
+let player1 = new Player("PLAYER 1",0,0,true);
+let player2 = new Player("PLAYER 2",0,0,false);
+
 /**  fonction qui retourne un nombre aléatoire entre 1 et 6 */
 function random() {
     var randomNumber = Math.trunc(Math.random()*6 +1);
@@ -7,13 +17,8 @@ function random() {
 /** init variable */
 var newGame = true;
 if (newGame){
-    var currentScore1 = 0;
-    var currentScore2 = 0;
-    var totalScore1 = 0;
-    var totalScore2 = 0;
-    var selectPlayer = 1;
-    var newGame = false;
-    var player = 1;
+    var newGame = false; 
+    document.getElementsByClassName('playerName')[1].setAttribute("style","color: #BBBBBB;font-weight: 200;");
 };
 
 /** function to show score */
@@ -24,61 +29,59 @@ function showScore(score,player,total){
     document.getElementById('totalScorePlayer' + player).textContent =score;
 }
 }
-
-/** function to change puce player */
-function selectPlayer(select){
-    if (select == 2){
-        document.getElementById('selectPlayer').setAttribute("style","background:red;");
-    }else{
-        document.getElementById('selectPlayer').setAttribute("style","background:bleu;");
-    }
-}
-
 /** fonction pour roll dice */
 function roll(){
     var result_roll = random();
     /** récupére display dice*/
     const dice = document.getElementById('dice');
+
     /** modify background with result roll */
     dice.setAttribute("style", "background-image: url(./image/" + result_roll + ".svg)");
 
     /** show currentScore */
-    if (player == 1 ){
-         currentScore1 = currentScore1 + result_roll;
-         showScore(currentScore1,1,false);
-
+    if (player1.select){
+        player1.currentScore = player1.currentScore + result_roll;
+        
+         showScore(player1.currentScore,1,false);
     }
     else {
-        currentScore2 = currentScore2 + result_roll;
-        showScore(currentScore2,2,false);
+        player2.currentScore = player2.currentScore + result_roll;
+        showScore(player2.currentScore,2,false);
     }
-   
-    console.log(currentScore1);
-    
 }
 
 /** fonction to change player*/
 function nextPlayer(){
-    if (player == 1){
+    if (player1.select){
         /** increase total score player 1 */
-        totalScore1 = totalScore1 + currentScore1;
+        player1.totalScore = player1.totalScore + player1.currentScore;
         /** init current score player 1 at 0 */
-        currentScore1 = 0;
+        player1.currentScore = 0;
         showScore(0,1,false);
-        showScore(totalScore1,1,true);
+        showScore(player1.totalScore,1,true);
         /** change player */
-        player = 2;
+        player1.select = false;
+        player2.select = true;
+        /** change select player */
         document.getElementById('selectPlayer').setAttribute("style","justify-content: end;");
+        /** change color name player 2 */
+        document.getElementsByClassName('playerName')[0].setAttribute("style","color: #BBBBBB;font-weight: 200;");
+        document.getElementsByClassName('playerName')[1].setAttribute("style","color: #000000;");
     }else {
         /** increase total score player 2 */
-        totalScore2 = totalScore2 + currentScore2;
+        player2.totalScore = player2.totalScore + player2.currentScore;
         /** init current score player 2 at 0 */
-        currentScore2 = 0;
+        player2.currentScore = 0;
         showScore(0,2,false);
-        showScore(totalScore2,2,true);
+        showScore(player2.totalScore,2,true);
         /** change player */
-        player = 1;
+        player1.select = true;
+        player2.select = false;
+        /** change select player */
         document.getElementById('selectPlayer').setAttribute("style","justify-content: left;");
+        /** change color name player 1 */
+        document.getElementsByClassName('playerName')[1].setAttribute("style","color: #BBBBBB; font-weight: 200");
+        document.getElementsByClassName('playerName')[0].setAttribute("style","color: #000000;");
     }
 }
 
@@ -86,8 +89,7 @@ function nextPlayer(){
 const btnRoll = document.getElementById('btn_roll');
 btnRoll.addEventListener('click',roll);
 
+
 /** button hold */
 const btn_hold = document.getElementById('btn_hold');
 btn_hold.addEventListener('click',nextPlayer);
-
-
