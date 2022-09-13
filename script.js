@@ -11,6 +11,7 @@ if (newGame){
     var currentScore2 = 0;
     var totalScore1 = 0;
     var totalScore2 = 0;
+    var selectPlayer = 1;
     var newGame = false;
     var player = 1;
 };
@@ -22,6 +23,15 @@ function showScore(score,player,total){
 } else{
     document.getElementById('totalScorePlayer' + player).textContent =score;
 }
+}
+
+/** function to change puce player */
+function selectPlayer(select){
+    if (select == 2){
+        document.getElementById('selectPlayer').setAttribute("style","background:red;");
+    }else{
+        document.getElementById('selectPlayer').setAttribute("style","background:bleu;");
+    }
 }
 
 /** fonction pour roll dice */
@@ -58,6 +68,7 @@ function nextPlayer(){
         showScore(totalScore1,1,true);
         /** change player */
         player = 2;
+        document.getElementById('selectPlayer').setAttribute("style","justify-content: end;");
     }else {
         /** increase total score player 2 */
         totalScore2 = totalScore2 + currentScore2;
@@ -67,6 +78,7 @@ function nextPlayer(){
         showScore(totalScore2,2,true);
         /** change player */
         player = 1;
+        document.getElementById('selectPlayer').setAttribute("style","justify-content: left;");
     }
 }
 
