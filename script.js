@@ -1,14 +1,18 @@
+/** crée une nouvelle parti au changement de la page  */
 window.onload = function exampleFunction() {
-  
-    newGame();
+  newGame();
 }
 
-function Player(name, currentScore,totalScore,select){
-    this.name = name;
-    this.currentScore = currentScore;
-    this.totalScore = totalScore;
-    this.select = select;
+/** crée un objet player */
+class Player{
+    constructor(name, currentScore,totalScore,select){
+        this.name = name;
+        this.currentScore = currentScore;
+        this.totalScore = totalScore;
+        this.select = select;
+    }
 }
+ 
 /** instance two players */
 let player1 = new Player("PLAYER 1",0,0,true);
 let player2 = new Player("PLAYER 2",0,0,false);
