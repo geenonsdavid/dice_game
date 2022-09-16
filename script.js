@@ -1,7 +1,7 @@
 /** crée une nouvelle parti au changement de la page  */
-window.onload = function exampleFunction() {
+/**window.onload = function exampleFunction() {
   newGame();
-}
+}*/
 
 /** crée un objet player */
 class Player{
@@ -90,6 +90,8 @@ function roll(){
     }
     
     }else{
+        /** change border color in red */
+        displayDice.setAttribute("style","border: 3px solid red");
         /** init current score */
         if(player1.select){
             player1.currentScore = 0;
