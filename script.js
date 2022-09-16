@@ -77,8 +77,10 @@ function roll(){
 
     /** modify background with result roll */
     displayDice.setAttribute("style", "background-image: url(./image/" + result_roll + ".svg)");
-
-    /** display currentScore */
+    
+    /** check if result roll not egal 1 */
+    if (result_roll != 1){
+        /** display current score */
     if(player1.select){
         player1.currentScore = player1.currentScore + result_roll;
         displayCurrentScore1.textContent = player1.currentScore;
@@ -86,7 +88,20 @@ function roll(){
         player2.currentScore = player2.currentScore + result_roll;
         displayCurrentScore2.textContent = player2.currentScore;
     }
-
+    
+    }else{
+        displayDice.setAttribute("style","border: 2px solid red")
+        /** init current score */
+        if(player1.select){
+            player1.currentScore = 0;
+            displayCurrentScore1.textContent = player1.currentScore;
+        }else{
+            player2.currentScore = 0;
+            displayCurrentScore2.textContent = player2.currentScore;
+        }
+        /** change player */
+        changePlayer();
+    }   
 } 
 
 /** fonction to change player */
