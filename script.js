@@ -1,3 +1,8 @@
+window.onload = function exampleFunction() {
+  
+    newGame();
+}
+
 function Player(name, currentScore,totalScore,select){
     this.name = name;
     this.currentScore = currentScore;
@@ -34,11 +39,24 @@ btn_hold.addEventListener('click',nextPlayer);
 /** listen btn_newGame */
 btn_newGame.addEventListener('click',newGame);
 
-var newGame = true;
-if (newGame){
-    var newGame = false; 
-    displayPlayer1.setAttribute("style","color: #BBBBBB;font-weight: 200;");
-};
+
+function newGame(){
+    player1.currentScore.textContent = 0;
+    player1.totalScore.textContent = 0;
+    player2.currentScore.textContent = 0;
+    player2.totalScore.textContent = 0;
+    player1.winner = false;
+    player2.winner = false;
+    player1.select = true;
+    player2.select = false; 
+    showScore(0,1,true);
+    showScore(0,2,true);
+    showScore(0,1,false);
+    showScore(0,1,false);
+    displayPlayer1.setAttribute("style","color:#000000");
+    displayPlayer2.setAttribute("style","color: #BBBBBB;font-weight: 200;");
+}
+
 
 /** function to show score */
 function showScore(score,player,total){
@@ -106,22 +124,14 @@ function changePlayer(){
         player2.select = !player2.select;
         /** change select player */
         if (player1.select){
+            displayPlayer2.setAttribute("style","color: #BBBBBB;font-weight: 200;");
+            displayPlayer1.setAttribute("style","color: #000000;");
+            selectPLayer.setAttribute("style","justify-content: start;");
+        } else {
             displayPlayer1.setAttribute("style","color: #BBBBBB;font-weight: 200;");
             displayPlayer2.setAttribute("style","color: #000000;");
-        }else{
             selectPLayer.setAttribute("style","justify-content: end;");
-        }      
-}
-
-function displayCurrentScore(player){
-    /** add currentScore player and roll dice result */
-    player.currentScore = player.currentScore + result_roll;
-    /** display currentScore player 1 */
-    showScore(player.currentScore,1,false);
-}
-
-function newGame(){
-    alert('new game');
+        } 
 }
 
 function winnerIs(){
