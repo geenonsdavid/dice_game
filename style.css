@@ -96,6 +96,12 @@ body{
     top: 56px;
 }
 
+button p:hover{
+    font-size:xx-large;
+    font-weight: 900;
+    color:#FF5555;
+}
+
 #selectPlayer{
     position: absolute;
     width: 340px;
@@ -116,7 +122,7 @@ body{
     width: 130px;
     height: 130px;
     background-color: #FFFFFF;
-    /*background-image: url(./image/1.svg);*/
+    background-image: url(./image/1.svg);
     background-size: cover;
     top: 230px;
     box-shadow: 0px 0px 32.0599px rgba(0, 0, 0, 0.1);
