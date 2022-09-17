@@ -45,12 +45,11 @@ btn_newGame.addEventListener('click',newGame);
 
 
 function newGame(){
-    player1.currentScore.textContent = 0;
-    player1.totalScore.textContent = 0;
-    player2.currentScore.textContent = 0;
+    player1.currentScore.textContent,
+    player1.totalScore.textContent,
+    player2.currentScore.textContent,
     player2.totalScore.textContent = 0;
-    player1.winner = false;
-    player2.winner = false;
+    player1.winner,player2.winner = false;
     player1.select = true;
     player2.select = false; 
     showScore(0,1,true);
