@@ -80,15 +80,19 @@ function roll(){
     /** check if result roll not egal 1 */
     if (result_roll != 1){
         /** display current score */
-    if(player1.select){
-        player1.currentScore = player1.currentScore + result_roll;
-        displayCurrentScore1.textContent = player1.currentScore;
-    }else{
-        player2.currentScore = player2.currentScore + result_roll;
-        displayCurrentScore2.textContent = player2.currentScore;
+        if(player1.select)
+        {
+            player1.currentScore = player1.currentScore + result_roll;
+            displayCurrentScore1.textContent = player1.currentScore;
+        }
+        else
+        {
+            player2.currentScore = player2.currentScore + result_roll;
+            displayCurrentScore2.textContent = player2.currentScore;
+        }
     }
-    
-    }else{
+    else
+    {
         /** change border color in red */
         displayDice.setAttribute("style","border: 3px solid red");
         /** init current score */
@@ -102,7 +106,7 @@ function roll(){
         /** change player */
         changePlayer();
     }   
-} 
+}         
 
 /** fonction to change player */
 function nextPlayer(){
