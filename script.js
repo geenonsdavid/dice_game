@@ -1,7 +1,7 @@
 /** crée une nouvelle parti au changement de la page  */
-/**window.onload = function exampleFunction() {
+window.onload = function exampleFunction() {
   newGame();
-}*/
+}
 
 /** crée un objet player */
 class Player{
