@@ -72,20 +72,19 @@ function showScore(score,player,total){
 
 /** fonction pour roll dice */
 function roll(){
-    var result_roll = random();
+    var result_roll = Math.trunc(Math.random()*6 +1);
     console.log(result_roll);
     /** modify background with result roll */
     displayDice.setAttribute("style", "background-image: url(./image/" + result_roll + ".svg)");
-    
     if (player1.select){
-        manageResult(player1,result_roll);
+        checkResult(player1,result_roll);
     }else {
-        manageResult(player2,result_roll);
+        checkResult(player2,result_roll);
     }     
 }   
 
-// fonction manage result
-function manageResult(player,result_roll){
+// fonction controle result
+function checkResult(player,result_roll){
     var total = player.currentScore + result_roll + player.totalScore;
     console.log(total);
     if (total > 100){ //check if tatalScore > 100
