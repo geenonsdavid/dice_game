@@ -73,40 +73,54 @@ function showScore(score,player,total){
 /** fonction pour roll dice */
 function roll(){
     var result_roll = random();
-
+    console.log(result_roll);
     /** modify background with result roll */
     displayDice.setAttribute("style", "background-image: url(./image/" + result_roll + ".svg)");
     
-    /** check if result roll not egal 1 */
-    if (result_roll != 1){
-        /** display current score */
-        if(player1.select)
-        {
-            player1.currentScore = player1.currentScore + result_roll;
-            displayCurrentScore1.textContent = player1.currentScore;
-        }
-        else
-        {
-            player2.currentScore = player2.currentScore + result_roll;
-            displayCurrentScore2.textContent = player2.currentScore;
-        }
-    }
-    else
-    {
-        /** change border color in red */
-        displayDice.setAttribute("style","border: 3px solid red");
-        /** init current score */
-        if(player1.select){
+    if (player1.select){
+        var total = player1.currentScore + result_roll + player1.totalScore;
+        if (total > 100){ //check if tatalScore > 100
+            // reset currentScore and change player *
             player1.currentScore = 0;
+            displayCurrentScore1.textContent = 0;
+            changePlayer();
+        }else if(result_roll == 1){ // ckeck if result dice = 1
+            /** change border color in red */
+            displayDice.setAttribute("style","border: 3px solid red");
+            // reset currentScore
+            player1.displayCurrentScore1 = 0;
+            displayCurrentScore1.textContent = 0;
+            // change player
+            changePlayer();
+        }else {
+            // add result dice and currentScore
+            player1.currentScore = player1.currentScore + result_roll;
+            // display current score
             displayCurrentScore1.textContent = player1.currentScore;
-        }else{
+        }
+    }else {
+    var total = player2.currentScore + result_roll + player2.totalScore;
+        if (total > 100){ //check if tatalScore > 100
+            // reset currentScore and change player *
             player2.currentScore = 0;
+            displayCurrentScore2.textContent = 0;
+            changePlayer();
+        }else if(result_roll == 1){ // ckeck if result dice = 1
+            /** change border color in red */
+            displayDice.setAttribute("style","border: 3px solid red");
+            // reset currentScore
+            player2.displayCurrentScore1 = 0;
+            displayCurrentScore2.textContent = 0;
+            // change player
+            changePlayer();
+        }else {
+            // add result dice and currentScore
+            player2.currentScore = player2.currentScore + result_roll;
+            // display current score
             displayCurrentScore2.textContent = player2.currentScore;
         }
-        /** change player */
-        changePlayer();
-    }   
-}         
+}     
+}   
 
 /** fonction to change player */
 function nextPlayer(){
