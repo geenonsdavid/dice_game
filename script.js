@@ -4,6 +4,7 @@ window.onload = function exampleFunction() {
 }
 
 /** init variable */
+var finishScore =20;
 var lauchGame = true;
 const backgroundPlayer1 = document.getElementById("displayPlayer1");
 const backgroundPlayer2 = document.getElementById("displayPlayer2");
@@ -30,12 +31,14 @@ btn_newGame.addEventListener('click', newGame);
 /** crée un objet player */
 var player1 = {
   name: "PLAYER 1",
+  id: 1,
   currentScore: 0,
   totalScore: 0,
   select: true
 }
 var player2 = {
   name: "PLAYER 2",
+  id: 2,
   currentScore: 0,
   totalScore: 0,
   select: false
@@ -51,9 +54,9 @@ function newGame() {
 
 
 
-/** fonction pour roll dice */
+// roll dice
 function rollDice() {
-  // select player
+  // select player who launch dice
   if (player1.select) {
     var { name, currentScore, totalScore } = player1;
   } else {
@@ -66,43 +69,30 @@ function rollDice() {
   // listen sound roll dice
   var audio = new Audio('./sound/roll.wav');
   audio.play();
-  // display result roll dice after sound roll dice.
+  // display result dice  when sound end  
   audio.addEventListener('ended', function () {
-    // display Dice
+    // display dice result in svg
     displayDice.setAttribute("style", "background-image: url(./image/" + result + ".svg)");// result = 1
     if (result === 1) {
-      // if total score = 99 then winner
-      if (totalScore == 99) {
-        totalScore = 100;
-        updateScore(currentScore, totalScore);
+      if (totalScore === (finishScore-1)) {
         winnerIs(name);
       }
-      // else change Player
       else {
-        displayError();
-        totalScore = totalScore - currentScore;
-        updateScore(currentScore, totalScore);
-
+        displayFlash();
+        initScore(totalScore, currentScore);
         changePlayer();
       }
 
     } else {
-      // increase current score
       currentScore = currentScore + result;
-      // increase total score
       totalScore = totalScore + result;
-      // total score > 100
-      if (totalScore > 100) {
-        totalScore = totalScore - currentScore;
-        currentScore = 0;
-        updateScore(currentScore, totalScore);
-        displayError();
+      if (totalScore > finishScore) {
+        initScore(totalScore, currentScore);
+        displayFlash();
         display();
         changePlayer();
       } else {
-        // update scores
         updateScore(currentScore, totalScore);
-        /** display current score */
         display();
       }
 
@@ -112,17 +102,27 @@ function rollDice() {
 
 
 }
+//
+function initScore(totalScore, currentScore) {
+  totalScore = totalScore - currentScore;
+  currentScore = 0;
+  updateScore(currentScore, totalScore);
+}
 
 // change player
 function changePlayer() {
+
   // check winner
   winnerIs();
+
   player1.select = !player1.select;
   player2.select = !player2.select;
   player1.currentScore = 0;
   player2.currentScore = 0;
 
+  /**show result */
   display();
+
   /** change select player */
   if (player1.select) {
     displayPlayer2.setAttribute("style", "color: #BBBBBB;font-weight: 200;");
@@ -137,10 +137,10 @@ function changePlayer() {
 
 // display winner
 function winnerIs() {
-  if (player1.totalScore == 100) {
+  if (player1.totalScore == finishScore) {
     alert("winner is " + player1.name);
     newGame();
-  } else if (player2.totalScore == 100) {
+  } else if (player2.totalScore == finishScore) {
     alert("winner is " + player2.name);
     newGame();
   }
@@ -171,7 +171,7 @@ function pause(ms) {
 }
 
 // flash display when result dice = 1 or result dice>100
-async function displayError() {
+async function displayFlash() {
   if (player1.select) {
     //displayPlayer1.setAttribute("style","background-color: white;");
     for (let index = 0; index < 5; index++) {
