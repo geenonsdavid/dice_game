@@ -4,7 +4,7 @@ window.onload = function exampleFunction() {
 }
 
 /** init variable */
-var finishScore =20;
+var finishScore = 100;
 var lauchGame = true;
 const backgroundPlayer1 = document.getElementById("displayPlayer1");
 const backgroundPlayer2 = document.getElementById("displayPlayer2");
