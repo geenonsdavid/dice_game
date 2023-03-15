@@ -55,12 +55,9 @@ function newGame() {
 function rollDice() {
   // select player
   if (player1.select) {
-    console.log("player 1" + player1);
     var { name, currentScore, totalScore } = player1;
-    console.log('cuurentScore ' + currentScore)
   } else {
     var { name, currentScore, totalScore } = player2;
-
   }
 
   // random number between 1 and 6
@@ -74,6 +71,7 @@ function rollDice() {
     // display Dice
     displayDice.setAttribute("style", "background-image: url(./image/" + result + ".svg)");
   });
+
   // result = 1
   if (result == 1) {
     // if total score = 99 then winner
@@ -115,13 +113,15 @@ function rollDice() {
 
 }
 
-
+// change player
 function changePlayer() {
+  // check winner
   winnerIs();
   player1.select = !player1.select;
   player2.select = !player2.select;
   player1.currentScore = 0;
   player2.currentScore = 0;
+
   display();
   /** change select player */
   if (player1.select) {
@@ -135,6 +135,7 @@ function changePlayer() {
   }
 }
 
+// display winner
 function winnerIs() {
   if (player1.totalScore == 100) {
     alert("winner is " + player1.name);
@@ -145,6 +146,7 @@ function winnerIs() {
   }
 }
 
+// update score
 function updateScore(currentScore, totalScore) {
   if (player1.select) {
     player1.currentScore = currentScore;
@@ -156,6 +158,7 @@ function updateScore(currentScore, totalScore) {
 
 }
 
+// display scores
 function display() {
   displayCurrentScore1.textContent = player1.currentScore;
   displayCurrentScore2.textContent = player2.currentScore;
@@ -167,6 +170,7 @@ function pause(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
 
+// flash display when result dice = 1 or result dice>100
 async function displayError() {
   if (player1.select) {
     //displayPlayer1.setAttribute("style","background-color: white;");
