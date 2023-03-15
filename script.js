@@ -69,47 +69,47 @@ function rollDice() {
   // display result roll dice after sound roll dice.
   audio.addEventListener('ended', function () {
     // display Dice
-    displayDice.setAttribute("style", "background-image: url(./image/" + result + ".svg)");
+    displayDice.setAttribute("style", "background-image: url(./image/" + result + ".svg)");// result = 1
+    if (result === 1) {
+      // if total score = 99 then winner
+      if (totalScore == 99) {
+        totalScore = 100;
+        updateScore(currentScore, totalScore);
+        winnerIs(name);
+      }
+      // else change Player
+      else {
+        displayError();
+        totalScore = totalScore - currentScore;
+        updateScore(currentScore, totalScore);
+
+        changePlayer();
+      }
+
+    } else {
+      // increase current score
+      currentScore = currentScore + result;
+      // increase total score
+      totalScore = totalScore + result;
+      // total score > 100
+      if (totalScore > 100) {
+        totalScore = totalScore - currentScore;
+        currentScore = 0;
+        updateScore(currentScore, totalScore);
+        displayError();
+        display();
+        changePlayer();
+      } else {
+        // update scores
+        updateScore(currentScore, totalScore);
+        /** display current score */
+        display();
+      }
+
+    }
   });
 
-  // result = 1
-  if (result == 1) {
-    // if total score = 99 then winner
-    if (totalScore == 99) {
-      totalScore = 100;
-      updateScore(currentScore, totalScore);
-      winnerIs(name);
-    }
-    // else change Player
-    else {
-      displayError();
-      totalScore = totalScore - currentScore;
-      updateScore(currentScore, totalScore);
 
-      changePlayer();
-    }
-
-  } else {
-    // increase current score
-    currentScore = currentScore + result;
-    // increase total score
-    totalScore = totalScore + result;
-    // total score > 100
-    if (totalScore > 100) {
-      totalScore = totalScore - currentScore;
-      currentScore = 0;
-      updateScore(currentScore, totalScore);
-      displayError();
-      display();
-      changePlayer();
-    } else {
-      // update scores
-      updateScore(currentScore, totalScore);
-      /** display current score */
-      display();
-    }
-
-  }
 
 }
 
