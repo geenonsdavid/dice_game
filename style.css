@@ -57,10 +57,8 @@ body{
 
 .playerName{
     text-align: center;
-    width: 255px;
-    height: 72px;
+    width: max-content;
     font-size: 56px;
-    line-height: 67px;
     color: var(--text-color-theme);
 }
 
@@ -176,8 +174,8 @@ button p{
 
 @media screen and (max-width: 768px){
     .playerName{
-        font-size: 40px;
-        line-height: 47px;
+        font-size: 20px;
+       
     }
     button p{
         font-family: 'lato';
