@@ -66,6 +66,7 @@ body{
 
 
 
+
 #totalScorePlayer1 ,
 #totalScorePlayer2{
     display: flex;
@@ -171,4 +172,18 @@ button p{
     font-weight:400;
     font-size: 28px;
     line-height: 30px;
+}
+
+@media screen and (max-width: 768px){
+    .playerName{
+        font-size: 40px;
+        line-height: 47px;
+    }
+    button p{
+        font-family: 'lato';
+        font-style: normal;
+        font-weight:400;
+        font-size: 18px;
+        line-height: 30px;
+    }
 }
