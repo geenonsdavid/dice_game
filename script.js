@@ -15,7 +15,8 @@ const displayTotalScore2 = document.getElementById("totalScorePlayer2");
 const displayPlayer1 = document.getElementsByClassName('playerName')[0];
 const displayPlayer2 = document.getElementsByClassName('playerName')[1];
 const displayDice = document.getElementById('dice');
-const selectPLayer = document.getElementById("selectPlayer");
+const select1 = document.getElementById("select1");
+const select2 = document.getElementById("select2");
 const btnRoll = document.getElementById('btn_roll');
 const btn_hold = document.getElementById('btn_hold');
 const btn_newGame = document.getElementById('btn_newGame')
@@ -127,11 +128,14 @@ function changePlayer() {
   if (player1.select) {
     displayPlayer2.setAttribute("style", "color: #BBBBBB;font-weight: 200;");
     displayPlayer1.setAttribute("style", "color: #000000;");
-    selectPLayer.setAttribute("style", "justify-content: start;");
+    select1.setAttribute("style", "display: block;");
+    select2 .setAttribute("style", "display: none;");
   } else {
     displayPlayer1.setAttribute("style", "color: #BBBBBB;font-weight: 200;");
     displayPlayer2.setAttribute("style", "color: #000000;");
-    selectPLayer.setAttribute("style", "justify-content: end;");
+    select1.setAttribute("style", "display: none;");
+    select2 .setAttribute("style", "display: block;");
+    
   }
 }
 
