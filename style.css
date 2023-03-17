@@ -174,14 +174,19 @@ button p{
 
 @media screen and (max-width: 768px){
     .playerName{
-        font-size: 20px;
+        font-size: 1.3rem;
        
     }
     button p{
         font-family: 'lato';
         font-style: normal;
         font-weight:400;
-        font-size: 18px;
+        font-size: 1rem;
         line-height: 30px;
+    }
+    button p:hover{
+        font-size: 1.2rem;
+        font-weight: 900;
+        color:#FF5555;
     }
 }
