@@ -1,11 +1,10 @@
-import { Player } from './player.js';
-
 /** crée une nouvelle parti au changement de la page  */
 window.onload = function exampleFunction() {
   newGame();
 }
 
 /** init variable */
+import Player from './player.js';
 var finishScore = 10;
 var lauchGame = true;
 const backgroundPlayer1 = document.getElementById("displayPlayer1");
@@ -22,7 +21,7 @@ const select2 = document.getElementById("select2");
 const btnRoll = document.getElementById('btn_roll');
 const btn_hold = document.getElementById('btn_hold');
 const btn_newGame = document.getElementById('btn_newGame')
-git 
+
 /** listen btn_roll */
 btnRoll.addEventListener('click', rollDice);
 /** listen button hold */
@@ -32,8 +31,8 @@ btn_newGame.addEventListener('click', newGame);
 
 
 /**Create player */
-var player1 = new Player("PLAYER 1", 1, 0, 0, true);
-var player2 = new Player("PLAYER 2", 2, 0, 0, false);
+const player1 = new Player("PLAYER 1", 1, 0, 0, true);
+const player2 = new Player("PLAYER 2", 2, 0, 0, false);
 
 /** new game */
 function newGame() {
