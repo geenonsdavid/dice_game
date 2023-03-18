@@ -1,10 +1,12 @@
+import { Player } from './player.js';
+
 /** crée une nouvelle parti au changement de la page  */
 window.onload = function exampleFunction() {
   newGame();
 }
 
 /** init variable */
-var finishScore = 100;
+var finishScore = 10;
 var lauchGame = true;
 const backgroundPlayer1 = document.getElementById("displayPlayer1");
 const backgroundPlayer2 = document.getElementById("displayPlayer2");
@@ -20,7 +22,7 @@ const select2 = document.getElementById("select2");
 const btnRoll = document.getElementById('btn_roll');
 const btn_hold = document.getElementById('btn_hold');
 const btn_newGame = document.getElementById('btn_newGame')
-
+git 
 /** listen btn_roll */
 btnRoll.addEventListener('click', rollDice);
 /** listen button hold */
@@ -29,23 +31,11 @@ btn_hold.addEventListener('click', changePlayer);
 btn_newGame.addEventListener('click', newGame);
 
 
-/** crée un objet player */
-var player1 = {
-  name: "PLAYER 1",
-  id: 1,
-  currentScore: 0,
-  totalScore: 0,
-  select: true
-}
-var player2 = {
-  name: "PLAYER 2",
-  id: 2,
-  currentScore: 0,
-  totalScore: 0,
-  select: false
-}
+/**Create player */
+var player1 = new Player("PLAYER 1", 1, 0, 0, true);
+var player2 = new Player("PLAYER 2", 2, 0, 0, false);
 
-
+/** new game */
 function newGame() {
   player1.totalScore = player1.currentScore = player2.totalScore = player2.currentScore = 0;
   displayPlayer1.setAttribute("style", "color:#000000");
@@ -75,7 +65,11 @@ function rollDice() {
     // display dice result in svg
     displayDice.setAttribute("style", "background-image: url(./image/" + result + ".svg)");// result = 1
     if (result === 1) {
+      console.log("totalScore : " + totalScore)
       if (totalScore === (finishScore-1)) {
+        totalScore = finishScore;
+        initScore(totalScore, currentScore);
+        console.log("result : " + result);
         winnerIs(name);
       }
       else {
@@ -141,6 +135,7 @@ function changePlayer() {
 
 // display winner
 function winnerIs() {
+  
   if (player1.totalScore == finishScore) {
     alert("winner is " + player1.name);
     newGame();
