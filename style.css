@@ -172,6 +172,30 @@ button p{
     line-height: 30px;
 }
 
+#winner{
+    display: none;
+    position: absolute;
+    font-size: 4em;
+    font-weight: 900;
+    width: max-content;
+    height: max-content;
+    padding: 0.5em;
+    background-color: rgba(0, 0, 0, 1);
+    color: var(--background-theme);
+    border: 5px solid var(--background-theme);
+    border-radius: 10px;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    z-index: 1;
+}
+#winnerName{
+    color: var(--background-theme);
+    font-size: 1em;
+    font-weight: 900;
+    margin-top: 20px;
+}
+
 @media screen and (max-width: 768px){
     .playerName{
         font-size: 1.3rem;
