@@ -1,5 +1,5 @@
 /**Class player */
-class Player {
+export default class Player {
     constructor(name, id, currentScore, totalScore, select) {
         this.name = name;
         this.id = id;
