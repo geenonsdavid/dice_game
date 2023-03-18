@@ -5,7 +5,7 @@ window.onload = function exampleFunction() {
 
 /** init variable */
 import Player from './player.js';
-var finishScore = 10;
+var finishScore = 100;
 var lauchGame = true;
 const backgroundPlayer1 = document.getElementById("displayPlayer1");
 const backgroundPlayer2 = document.getElementById("displayPlayer2");
@@ -38,6 +38,7 @@ const player2 = new Player("PLAYER 2", 2, 0, 0, false);
 
 /** new game */
 function newGame() {
+
   player1.totalScore = player1.currentScore = player2.totalScore = player2.currentScore = 0;
   displayPlayer1.setAttribute("style", "color:#000000");
   displayPlayer2.setAttribute("style", "color: #BBBBBB;font-weight: 200;");
