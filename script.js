@@ -21,6 +21,8 @@ const select2 = document.getElementById("select2");
 const btnRoll = document.getElementById('btn_roll');
 const btn_hold = document.getElementById('btn_hold');
 const btn_newGame = document.getElementById('btn_newGame')
+const displayWinner = document.getElementById('winner');
+const winnerName = document.getElementById('winnerName');  
 
 /** listen btn_roll */
 btnRoll.addEventListener('click', rollDice);
@@ -39,6 +41,9 @@ function newGame() {
   player1.totalScore = player1.currentScore = player2.totalScore = player2.currentScore = 0;
   displayPlayer1.setAttribute("style", "color:#000000");
   displayPlayer2.setAttribute("style", "color: #BBBBBB;font-weight: 200;");
+  displayWinner.style.display = "none";
+  btnRoll.setAttribute("style", "display: flex;");
+  btn_hold.setAttribute("style", "display: flex;");
   display();
 }
 
@@ -65,7 +70,7 @@ function rollDice() {
     displayDice.setAttribute("style", "background-image: url(./image/" + result + ".svg)");// result = 1
     if (result === 1) {
       console.log("totalScore : " + totalScore)
-      if (totalScore === (finishScore-1)) {
+      if (totalScore === (finishScore - 1)) {
         totalScore = finishScore;
         initScore(totalScore, currentScore);
         console.log("result : " + result);
@@ -122,13 +127,13 @@ function changePlayer() {
     displayPlayer2.setAttribute("style", "color: #BBBBBB;font-weight: 200;");
     displayPlayer1.setAttribute("style", "color: #000000;");
     select1.setAttribute("style", "display: block;");
-    select2 .setAttribute("style", "display: none;");
+    select2.setAttribute("style", "display: none;");
   } else {
     displayPlayer1.setAttribute("style", "color: #BBBBBB;font-weight: 200;");
     displayPlayer2.setAttribute("style", "color: #000000;");
     select1.setAttribute("style", "display: none;");
-    select2 .setAttribute("style", "display: block;");
-    
+    select2.setAttribute("style", "display: block;");
+
   }
 }
 
@@ -136,11 +141,17 @@ function changePlayer() {
 function winnerIs() {
   
   if (player1.totalScore == finishScore) {
-    alert("winner is " + player1.name);
-    newGame();
+    winnerName.textContent = player1.name;
+    displayWinner.style.display = "flex";
+    btnRoll.setAttribute("style", "display: none;");
+    btn_hold.setAttribute("style", "display: none;");
+    //newGame();
   } else if (player2.totalScore == finishScore) {
-    alert("winner is " + player2.name);
-    newGame();
+    displayWinner.style.display = "flex";
+    winnerName.textContent = player2.name;
+    btnRoll.setAttribute("style", "display: none;");
+    btn_hold.setAttribute("style", "display: none;");
+    //newGame();
   }
 }
 
